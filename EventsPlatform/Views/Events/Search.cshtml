@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Търсене";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<form class="my-2 my-lg-0">
+    <div class="form-group">
+        <label class="d-inline-block" for="select-type">Търси по: </label>
+        <select id="search-select" name="select-type" class="form-select" aria-label="Default select example" style="width: 150px;">
+            <option value="0" selected>--Избери--</option>
+            <option value="1">Град</option>
+            <option value="2">Име</option>
+        </select>
+        <span id="select-field-validation" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input id="search-field" class="form-control mr-sm-2 d-inline-block" type="search" placeholder="" aria-label="Search" style="width: 300px;">
+        <input class="btn btn-outline-success my-2 my-sm-0" type="button" onclick="search()" value="Търсене">
+        <span id="search-field-validation" class="text-danger"></span>
+    </div>
+    
+    
+</form>
+
+<div id="found-events"></div>
+
+<script src="~/js/search.js" asp-append-version="true"></script>

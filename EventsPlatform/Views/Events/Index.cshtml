@@ -1,0 +1,49 @@
+﻿@using EventsPlatform.Models.Enums
+
+@model IEnumerable<EventsPlatform.Models.Event>
+
+@{
+    ViewData["Title"] = "Начало";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Платформа за събития</h1>
+<p>Платформата предоставя възможност да се създават и да се заявява участие в събития.</p>
+
+<div style="margin-bottom: 60px;"></div>
+
+@for (var group = 0; group <= Model.Count() / 3; group++)
+{
+    <div class="row">
+        @for (var item = 3 * group; item <= 3 * group + 2; item++)
+        {
+            if (item >= Model.Count()) break;
+            <div class="col-sm-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">@Model.ElementAt(item).Name</h5>
+                        <p class="card-text">@Model.ElementAt(item).Details</p>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Начало: @Model.ElementAt(item).EventStartDate</li>
+                        <li class="list-group-item">Край: @Model.ElementAt(item).EventEndDate</li>
+                        <li class="list-group-item">
+                            Тип събитие: @if (@Model.ElementAt(item).EventType == EventType.Real)
+                            {
+                                <span>Реално</span>
+                            }
+                            else
+                            {
+                                <span>Виртуално</span>
+                            }
+                        </li>
+                    </ul>
+                    <div class="card-body">
+                        <a asp-action="Details" asp-route-id="@Model.ElementAt(item).Id">Детайли</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+

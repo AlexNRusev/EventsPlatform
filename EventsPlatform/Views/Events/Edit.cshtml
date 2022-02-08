@@ -1,0 +1,74 @@
+﻿@using EventsPlatform.Models.Enums
+@model EventsPlatform.ViewModels.EventViewModel
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventStartDate" class="control-label"></label>
+                <input asp-for="EventStartDate" class="form-control" />
+                <span asp-validation-for="EventStartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EventEndDate" class="control-label"></label>
+                <input asp-for="EventEndDate" class="form-control" />
+                <span asp-validation-for="EventEndDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxNumberOfParticipants" class="control-label"></label>
+                <input asp-for="MaxNumberOfParticipants" class="form-control" />
+                <span asp-validation-for="MaxNumberOfParticipants" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Details" class="control-label"></label>
+                <input asp-for="Details" class="form-control" />
+                <span asp-validation-for="Details" class="text-danger"></span>
+            </div>
+            @if (Model.EventType == EventType.Real)
+            {
+                <div class="form-group">
+                    <label asp-for="Location.Town" class="control-label"></label>
+                    <input asp-for="Location.Town" class="form-control" />
+                    <span asp-validation-for="Location.Town" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location.Street" class="control-label"></label>
+                    <input asp-for="Location.Street" class="form-control" />
+                    <span asp-validation-for="Location.Street" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Location.OtherDetails" class="control-label"></label>
+                    <input asp-for="Location.OtherDetails" class="form-control" />
+                    <span asp-validation-for="Location.OtherDetails" class="text-danger"></span>
+                </div>
+            }
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+    await Html.RenderPartialAsync("_ValidationScriptsPartial");
+}
+}

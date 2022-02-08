@@ -1,0 +1,66 @@
+﻿@using EventsPlatform.Models.Enums
+
+@model IEnumerable<EventsPlatform.ViewModels.EventViewModel>
+
+@{
+    ViewData["Title"] = "Моите събития";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Моите събития</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventEndDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MaxNumberOfParticipants)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EventType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Details)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventEndDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxNumberOfParticipants)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EventType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Details)
+                </td>
+                <td>
+                    <a asp-controller="Events" asp-action="Edit" asp-route-id="@item.Id">Редактиране</a> |
+                    <a asp-controller="Events" asp-action="Details" asp-route-id="@item.Id">Детайли</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+
+</table>
